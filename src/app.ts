@@ -4,33 +4,31 @@ import { BabylonCanvas } from "./babylonCanvas"
 class App {
 
     // General Entire Application
-    private _babylonCanvas: BabylonCanvas;
-    private _resetButton: HTMLAnchorElement;
+    public babylonCanvas: BabylonCanvas;
+    public resetButton: HTMLAnchorElement;
     public hello: String;
     
     constructor() {
         
-        this._babylonCanvas = new BabylonCanvas()
+        this.babylonCanvas = new BabylonCanvas()
 
-        this._resetButton = <HTMLAnchorElement> document.getElementById("reset-button");
+        
+        this.resetButton = <HTMLAnchorElement> document.getElementById("reset-button");
         this.hello = "HI"
 
         this._initResetButton()
     }
 
     // Initialize reset button functionality
-    private async _initResetButton(): Promise<void> {
+    public async _initResetButton() {
         console.log("START - _initResetButton - START")
-        
-        this._resetButton.onclick = this._babylonCanvas._initScene
-
+        console.log(this.babylonCanvas._engine)
+        this.resetButton.onclick = this._resetScene
         console.log("END - _initResetButton - END")
     }
 
-    public test():void {
-        console.log("TESTESTESTEST")
-        console.log(this._resetButton)
-        console.log(this.hello)
+    private _resetScene = () => {
+        this.babylonCanvas._initScene()
     }
 }
 new App();

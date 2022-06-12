@@ -8,10 +8,10 @@ import { Environment } from "./environment";
 
 export class BabylonCanvas {
     // General Entire Application
-    private _canvas: HTMLCanvasElement;
-    private _engine: Engine;
-    private _scene: Scene;
-    private _environment?: Environment | null;
+    public _canvas: HTMLCanvasElement;
+    public _engine: Engine;
+    public _scene: Scene;
+    public _environment?: Environment | null;
     
     constructor() {
         
@@ -111,8 +111,9 @@ export class BabylonCanvas {
     // Initialize main Scene
     public async _initScene(): Promise<void> {
         console.log("START - _initScene - START")
+        console.log(this._engine)
 
-        this.engine.displayLoadingUI(); //make sure to wait for start to load
+        this._engine.displayLoadingUI(); //make sure to wait for start to load
 
         this._scene.detachControl();
 
@@ -196,4 +197,3 @@ export class BabylonCanvas {
         console.log("END - _initInspector - END")
     }
 }
-new BabylonCanvas();

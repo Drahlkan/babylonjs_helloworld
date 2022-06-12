@@ -24,9 +24,28 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.m?js/,
+            },
+            {
+                test: /\.(js|mjs|jsx|ts|tsx)$/,
+                loader: "source-map-loader",
+                enforce: "pre",
+            },
+            {
                 test: /\.tsx?$/,
-                use: "ts-loader",
-                exclude: /node_modules/,
+                loader: "ts-loader",
+                // sideEffects: true
+            },
+            {
+                test: /\.(png|jpg|gif|env|glb|stl)$/i,
+                use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            limit: 8192,
+                        },
+                    },
+                ],
             },
         ],
     },
