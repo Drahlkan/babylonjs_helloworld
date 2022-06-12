@@ -12,9 +12,6 @@ class App {
     private _engine: Engine;
     private _scene: Scene;
     private _environment?: Environment | null;
-
-    public hello:string
-    public resetButton:HTMLAnchorElement;
     
     constructor() {
         
@@ -31,9 +28,7 @@ class App {
 
         // Empty scene init
         this._scene = new Scene(this._engine);
-
-        this.resetButton = <HTMLAnchorElement> document.getElementById("reset-button");
-        this.hello = "HI"
+        
         // Start initialization and main loop
         this._main();
     }
@@ -57,13 +52,13 @@ class App {
 
     // Initialize HTML UI functionalities
     private async _initUI(): Promise<void> {
-        console.log("START - _initHTMLUI - START")
+        console.log("START - _initUI - START")
 
         this._initFullscreenToggle()
         this._initSidePanelToggle()
         this._initResetButton()
 
-        console.log("END - _initHTMLUI - END")
+        console.log("END - _initUI - END")
     }
 
     // Initialize fullscreen toggle functionality
@@ -92,16 +87,12 @@ class App {
     private async _initResetButton(): Promise<void> {
         console.log("START - _initResetButton - START")
         
-        
-        this.resetButton.onclick = this.test
+        let resetButton = <HTMLAnchorElement> document.getElementById("reset-button");
+        resetButton.onclick = e => {
+            this._initScene();
+        }
 
         console.log("END - _initResetButton - END")
-    }
-
-    public test():void {
-        console.log("TESTESTESTEST")
-        console.log(this.resetButton)
-        console.log(this.hello)
     }
 
     // Initialize side panel toggle functionality
